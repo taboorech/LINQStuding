@@ -46,6 +46,14 @@ PrintResult("task9_2",helper.Paging(
     x => x.ArrivalPeriod.Start, 
     x => x.Direction.Origin.City == "Lviv").SequenceEqual(task9_2));
 
+var task9_3 = JsonSerializer.Deserialize<List<Delivery>>(FileText("task9_3")) ?? throw new ArgumentException();
+PrintResult("task9_3",helper.Paging(
+    deliveries, 
+    x => x.ArrivalPeriod.Start, 
+    x => x.Direction.Origin.City == "Lviv",
+    25,
+    3).SequenceEqual(task9_3));
+
 string FileText(string fileName)
 {
     using StreamReader reader = new StreamReader($"../../../../{fileName}.json");
